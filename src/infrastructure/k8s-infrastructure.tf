@@ -32,7 +32,7 @@ module "gke" {
   network                     = google_compute_network.main.name
   subnetwork                  = google_compute_subnetwork.main.name
   ip_range_pods               = google_compute_subnetwork.main.name
-  ip_range_services           = google_compute_subnetwork.main.secondary_ip_range.name
+  ip_range_services           = google_compute_subnetwork.main.secondary_ip_range.range_name
   
   # Disable workload identity
   identity_namespace = null
