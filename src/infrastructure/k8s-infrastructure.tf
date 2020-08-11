@@ -2,26 +2,26 @@ resource "random_id" "suffix" {
   byte_length = 2
 }
 
-# resource "azurerm_resource_group" "aks" {
-#   name     = local.common_name
-#   location = local.cloud_config.aks.location
-# }
+resource "azurerm_resource_group" "aks" {
+  name     = local.common_name
+  location = local.cloud_config.aks.location
+}
 
-# module "aks" {
-#   source                      = "./local-modules/aks"
-#   cluster_name                = "${local.common_name}${random_id.suffix.hex}"
-#   kubernetes_version          = local.common_k8s_config.version
-#   location                    = local.cloud_config.aks.location
-#   resource_group_name         = azurerm_resource_group.aks.name
-#   default_node_pool_vm_size   = "Standard_B2ms"
-#   default_node_pool_count     = local.common_k8s_config.node_count
-#   default_node_pool_subnet_id = null
-#   network_plugin              = "kubenet"
-#   network_policy              = "calico"
-#   enable_rbac                 = false
-#   enable_oms                  = false
+module "aks" {
+  source                      = "./local-modules/aks"
+  cluster_name                = "${local.common_name}${random_id.suffix.hex}"
+  kubernetes_version          = local.common_k8s_config.version
+  location                    = local.cloud_config.aks.location
+  resource_group_name         = azurerm_resource_group.aks.name
+  default_node_pool_vm_size   = "Standard_B2ms"
+  default_node_pool_count     = local.common_k8s_config.node_count
+  default_node_pool_subnet_id = null
+  network_plugin              = "kubenet"
+  network_policy              = "calico"
+  enable_rbac                 = false
+  enable_oms                  = false
 
-# }
+}
 
 module "gke" {
   source                      = "app.terraform.io/cardinalsolutions/kubernetes-engine/google//modules/beta-public-cluster"
