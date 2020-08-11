@@ -20,7 +20,7 @@ module "aks" {
   network_policy              = "calico"
   enable_rbac                 = false
   enable_oms                  = false
-
+  
 }
 
 module "gke" {
@@ -33,7 +33,7 @@ module "gke" {
   subnetwork                  = "default"
   ip_range_pods               = ""
   ip_range_services           = ""
-  
+  skip_provisioners           = true
   # Disable workload identity
   identity_namespace = null
   node_metadata      = "UNSPECIFIED"
