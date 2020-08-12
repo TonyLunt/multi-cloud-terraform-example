@@ -12,7 +12,7 @@ output "gke" {
     sensitive   = true
     value = {
          host = module.gke.endpoint
-         username               = local.cloud_config.gke.basic_auth_username
+         username               = local.cloud_config.gke.username
          password               = random_password.password.result
          cluster_ca_certificate = data.google_container_cluster.gke.master_auth.0.cluster_ca_certificate
     }
