@@ -11,7 +11,7 @@ output "aks" {
 output "gke" {
     sensitive   = true
     value = {
-         host = module.gke.fqdn
+         host = module.gke.endpoint
          client_certificate     = data.google_container_cluster.gke.master_auth.0.client_certificate
          client_key             = data.google_container_cluster.gke.master_auth.0.client_key
          cluster_ca_certificate = data.google_container_cluster.gke.master_auth.0.cluster_ca_certificate
