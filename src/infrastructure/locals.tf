@@ -10,9 +10,9 @@ locals {
       location = "eastus2"
     }
     gke = {
-      location = "us-east1"
+      location   = "us-east1"
       project_id = "tony-lunt"
-      username = "tonylunt"
+      username   = "tonylunt"
     }
   }
 }

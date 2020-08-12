@@ -3,7 +3,7 @@ resource "random_id" "suffix" {
 }
 
 resource "random_password" "password" {
-  length = 24
+  length  = 24
   special = false
 }
 
@@ -25,23 +25,23 @@ module "aks" {
   network_policy              = "calico"
   enable_rbac                 = false
   enable_oms                  = false
-  
+
 }
 
 module "gke" {
-  source                      = "app.terraform.io/cardinalsolutions/kubernetes-engine/google//modules/beta-public-cluster"
-  version                     = "9.2.0"
-  project_id                  = local.cloud_config.gke.project_id
-  name                        = "${local.common_name}${random_id.suffix.hex}"
-  region                      = local.cloud_config.gke.location
-  network                     = "default"
-  subnetwork                  = "default"
-  issue_client_certificate    = true
-  ip_range_pods               = ""
-  ip_range_services           = ""
-  skip_provisioners           = true
-  basic_auth_username         = local.cloud_config.gke.username
-  basic_auth_password         = random_password.password.result
+  source                   = "app.terraform.io/cardinalsolutions/kubernetes-engine/google//modules/beta-public-cluster"
+  version                  = "9.2.0"
+  project_id               = local.cloud_config.gke.project_id
+  name                     = "${local.common_name}${random_id.suffix.hex}"
+  region                   = local.cloud_config.gke.location
+  network                  = "default"
+  subnetwork               = "default"
+  issue_client_certificate = true
+  ip_range_pods            = ""
+  ip_range_services        = ""
+  skip_provisioners        = true
+  basic_auth_username      = local.cloud_config.gke.username
+  basic_auth_password      = random_password.password.result
   # Disable workload identity
   identity_namespace = null
   node_metadata      = "UNSPECIFIED"

@@ -12,8 +12,8 @@ data "terraform_remote_state" "tfc" {
 
 
 provider "kubernetes" {
-  version = "1.12.0"
-  alias = "aks"
+  version          = "1.12.0"
+  alias            = "aks"
   load_config_file = "false"
 
   host = data.terraform_remote_state.tfc.outputs.aks.host
@@ -24,11 +24,11 @@ provider "kubernetes" {
 }
 
 provider "kubernetes" {
-  version = "1.12.0"
-  alias = "gke"
+  version          = "1.12.0"
+  alias            = "gke"
   load_config_file = "false"
 
-  host = data.terraform_remote_state.tfc.outputs.gke.host
+  host = "https://${ data.terraform_remote_state.tfc.outputs.gke.host }
 
   username = data.terraform_remote_state.tfc.outputs.gke.username
   password = data.terraform_remote_state.tfc.outputs.gke.password
