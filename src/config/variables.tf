@@ -1,3 +1,0 @@
-variable "aks" {}
-
-variable "gke" {}

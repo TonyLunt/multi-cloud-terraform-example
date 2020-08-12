@@ -1,13 +1,26 @@
+data "terraform_remote_state" "tfc" {
+  backend = "remote"
+
+  config = {
+    organization = "cardinalsolutions"
+
+    workspaces = {
+      name = "multi-cloud-terraform-example"
+    }
+  }
+}
+
+
 provider "kubernetes" {
   version = "1.12.0"
   alias = "aks"
   load_config_file = "false"
 
-  host = var.aks.host
+  host = data.terraform.tfc.outputs.aks.host
 
-  client_certificate     = var.aks.client_certificate
-  client_key             = var.aks.client_key
-  cluster_ca_certificate = var.aks.cluster_ca_certificate
+  client_certificate     = data.terraform.tfc.outputs.aks.client_certificate
+  client_key             = data.terraform.tfc.outputs.aks.client_key
+  cluster_ca_certificate = data.terraform.tfc.outputs.aks.cluster_ca_certificate
 }
 
 provider "kubernetes" {
@@ -15,9 +28,8 @@ provider "kubernetes" {
   alias = "gke"
   load_config_file = "false"
 
-  host = var.gke.host
+  host = data.terraform.tfc.outputs.gke.host
 
-  client_certificate     = var.gke.client_certificate
-  client_key             = var.gke.client_key
-  cluster_ca_certificate = var.gke.cluster_ca_certificate
+  username = data.terraform.tfc.outputs.gke.username
+  password = data.terraform.tfc.outputs.gke.password
 }
