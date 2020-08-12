@@ -31,6 +31,7 @@ module "gke" {
   region                      = local.cloud_config.gke.location
   network                     = "default"
   subnetwork                  = "default"
+  issue_client_certificate    = true
   ip_range_pods               = ""
   ip_range_services           = ""
   skip_provisioners           = true
