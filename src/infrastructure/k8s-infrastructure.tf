@@ -25,7 +25,7 @@ module "aks" {
   network_policy              = "calico"
   enable_rbac                 = false
   enable_oms                  = false
-
+  tags                        = { foo = "bar" }
 }
 
 module "gke" {
