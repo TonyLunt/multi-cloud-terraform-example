@@ -16,11 +16,11 @@ provider "kubernetes" {
   alias = "aks"
   load_config_file = "false"
 
-  host = data.terraform.tfc.outputs.aks.host
+  host = data.terraform_remote_state.tfc.outputs.aks.host
 
-  client_certificate     = data.terraform.tfc.outputs.aks.client_certificate
-  client_key             = data.terraform.tfc.outputs.aks.client_key
-  cluster_ca_certificate = data.terraform.tfc.outputs.aks.cluster_ca_certificate
+  client_certificate     = data.terraform_remote_state.tfc.outputs.aks.client_certificate
+  client_key             = data.terraform_remote_state.tfc.outputs.aks.client_key
+  cluster_ca_certificate = data.terraform_remote_state.tfc.outputs.aks.cluster_ca_certificate
 }
 
 provider "kubernetes" {
@@ -28,8 +28,8 @@ provider "kubernetes" {
   alias = "gke"
   load_config_file = "false"
 
-  host = data.terraform.tfc.outputs.gke.host
+  host = data.terraform_remote_state.tfc.outputs.gke.host
 
-  username = data.terraform.tfc.outputs.gke.username
-  password = data.terraform.tfc.outputs.gke.password
+  username = data.terraform_remote_state.tfc.outputs.gke.username
+  password = data.terraform_remote_state.tfc.outputs.gke.password
 }
