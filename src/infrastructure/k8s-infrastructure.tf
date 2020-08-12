@@ -2,6 +2,11 @@ resource "random_id" "suffix" {
   byte_length = 2
 }
 
+resource "random_password" "password" {
+  length = 24
+  special = false
+}
+
 resource "azurerm_resource_group" "aks" {
   name     = local.common_name
   location = local.cloud_config.aks.location
@@ -35,6 +40,8 @@ module "gke" {
   ip_range_pods               = ""
   ip_range_services           = ""
   skip_provisioners           = true
+  basic_auth_username         = local.cloud_config.gke.basic_auth_username
+  basic_auth_password         = random_password.password.result
   # Disable workload identity
   identity_namespace = null
   node_metadata      = "UNSPECIFIED"

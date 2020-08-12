@@ -12,6 +12,7 @@ locals {
     gke = {
       location = "us-east1"
       project_id = "tony-lunt"
+      username = "tonylunt"
     }
   }
 }
