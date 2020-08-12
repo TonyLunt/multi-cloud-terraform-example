@@ -18,9 +18,9 @@ provider "kubernetes" {
 
   host = data.terraform_remote_state.tfc.outputs.aks.host
 
-  client_certificate     = data.terraform_remote_state.tfc.outputs.aks.client_certificate
-  client_key             = data.terraform_remote_state.tfc.outputs.aks.client_key
-  cluster_ca_certificate = data.terraform_remote_state.tfc.outputs.aks.cluster_ca_certificate
+  client_certificate     = base64decode(data.terraform_remote_state.tfc.outputs.aks.client_certificate)
+  client_key             = base64decode(data.terraform_remote_state.tfc.outputs.aks.client_key)
+  cluster_ca_certificate = base64decode(data.terraform_remote_state.tfc.outputs.aks.cluster_ca_certificate)
 }
 
 provider "kubernetes" {
