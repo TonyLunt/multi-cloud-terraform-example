@@ -40,7 +40,7 @@ module "gke" {
   ip_range_pods               = ""
   ip_range_services           = ""
   skip_provisioners           = true
-  basic_auth_username         = local.cloud_config.gke.basic_auth_username
+  basic_auth_username         = local.cloud_config.gke.username
   basic_auth_password         = random_password.password.result
   # Disable workload identity
   identity_namespace = null
