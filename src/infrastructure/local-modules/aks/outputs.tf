@@ -78,8 +78,6 @@ output "admin_password" {
   sensitive   = true
 }
 
-
-kube_config
 output "client_key" {
   description = "Base64 encoded private key used by clients to authenticate to the Kubernetes cluster."
   value       = azurerm_kubernetes_cluster.module.kube_config.0.client_key
