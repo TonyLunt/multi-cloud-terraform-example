@@ -1,1 +1,3 @@
 variable "aks" {}
+
+variable "gke" {}
