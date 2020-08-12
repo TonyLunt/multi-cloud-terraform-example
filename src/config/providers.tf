@@ -28,7 +28,7 @@ provider "kubernetes" {
   alias            = "gke"
   load_config_file = "false"
 
-  host = "https://${ data.terraform_remote_state.tfc.outputs.gke.host }
+  host = "https://${ data.terraform_remote_state.tfc.outputs.gke.host }"
 
   username = data.terraform_remote_state.tfc.outputs.gke.username
   password = data.terraform_remote_state.tfc.outputs.gke.password
