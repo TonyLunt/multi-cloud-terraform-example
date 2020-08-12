@@ -38,3 +38,8 @@ module "gke" {
   identity_namespace = null
   node_metadata      = "UNSPECIFIED"
 }
+
+data "google_container_cluster" "gke" {
+  name     = module.gke.name
+  location = module.gke.location
+}
